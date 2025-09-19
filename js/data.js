@@ -75,8 +75,8 @@ const familyData = [
                 id: "person2_6",
                 name: "عرفة",
                 parentId: "person1_1",
-                image: "images/default-avatar",
-                bio: "",
+                image: "images/person4_6.jpg",
+                bio: "زوجها فضل الله عبيد لها 9 من الابناء  توفيت في عام 2006 لها المغفرة ",
                 birth_date: "",
                 children: ["person3_29","person3_30","person3_31","person3_32","person3_33","person3_34","person3_35","person3_36","person3_37"]
             },
@@ -156,7 +156,7 @@ const familyData = [
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: ["person4_25","person3_26","person3_27"]
+                children: ["person4_25","person4_26","person4_27"]
             },
             {
                 id: "person3_5",
@@ -453,7 +453,7 @@ const familyData = [
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
-                children: ["person4_25","person3_26","person3_27"]
+                children: ["person4_25","person4_26","person4_27"]
             },
             {
                 id: "person3_38",
