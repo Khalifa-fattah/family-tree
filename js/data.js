@@ -458,7 +458,7 @@ const familyData = [
             {
                 id: "person3_38",
                 name: "ابو سفيان طه",
-                parentId: "person2_7",
+                parentId: "person2_8",
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
@@ -467,7 +467,7 @@ const familyData = [
             {
                 id: "person3_39",
                 name: "ابو العلا طه",
-                parentId: "person2_7",
+                parentId: "person2_8",
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
@@ -476,7 +476,7 @@ const familyData = [
             {
                 id: "person3_40",
                 name: "ابو العتاهية طه",
-                parentId: "person2_7",
+                parentId: "person2_8",
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
@@ -485,7 +485,7 @@ const familyData = [
             {
                 id: "person3_41",
                 name: "ابو القاسم طه",
-                parentId: "person2_7",
+                parentId: "person2_8",
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
@@ -538,6 +538,15 @@ const familyData = [
             },
             {
                 id: "person3_47",
+                name: "سليمان كمال",
+                parentId: "person2_10",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: [""]
+            },
+            {
+                id: "person3_48",
                 name: "الاء كمال",
                 parentId: "person2_10",
                 image: "images/defualt-avatar",
