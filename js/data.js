@@ -75,7 +75,7 @@ const familyData = [
                 id: "person2_6",
                 name: "عرفة",
                 parentId: "person1_1",
-                image: "images/person4_6.jpg",
+                image: "images/person2_6.jpg",
                 bio: "زوجها فضل الله عبيد لها 9 من الابناء  توفيت في عام 2006 لها المغفرة ",
                 birth_date: "",
                 children: ["person3_29","person3_30","person3_31","person3_32","person3_33","person3_34","person3_35","person3_36","person3_37"]
