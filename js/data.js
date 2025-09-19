@@ -241,7 +241,7 @@ const familyData = [
             },
             {
                 id: "person3_14",
-                name: "قذافي على",
+                name: "معمر على",
                 parentId: "person2_4",
                 image: "images/default-avatar",
                 bio: "",
@@ -406,8 +406,8 @@ const familyData = [
                 name: "خالد فضل الله",
                 parentId: "person2_6",
                 image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "له الرحمة",
+                bio: "له الرحمه",
+                birth_date: "",
                 children: [""]
             },
             {
