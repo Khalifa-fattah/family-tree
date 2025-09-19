@@ -29,85 +29,30 @@ const familyData = [
             {
                 id: "person2_1",
                 name: "عز الدين احمد عبيد",
+                parentId: "person1_1",
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
+                children: []
             },
             {
                 id: "person2_2",
                 name: "محمد الحسن احمد عبيد",
+                parentId: "person1_1",
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
-                
+                children: []
             },
             {
                 id: "person2_3",
                 name: "ست النساء احمد عبيد",
+                parentId: "person1_1",
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
+                children: []
             },
-            {
-                id: "person2_4",
-                name: "منى احمد عبيد",
-                image: "images/default-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person2_5",
-                name: "زمزم احمد عبيد",
-                image: "images/default-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person2_6",
-                name: "عرفة احمد عبيد",
-                image: "images/default-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person2_7",
-                name: "جدة احمد عبيد",
-                image: "images/default-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person2_8",
-                name: "ليلى احمد عبيد",
-                image: "images/default-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person2_9",
-                name: "علي احمد عبيد",
-                image: "images/default-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person2_10",
-                name: "صفاء احمد عبيد",
-                image: "images/default-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            
         ]
     },
     {
@@ -117,218 +62,47 @@ const familyData = [
             {
                 id: "person3_1",
                 name: "عاطف عز الدين",
-                image: "images/defualt-avatar",
+                parentId: "person2_1",
+                image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
+                children: []
             },
             {
                 id: "person3_2",
                 name: "زاهر عز الدين",
-                image: "images/defualt-avatar",
+                parentId: "person2_1",
+                image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
+                children: []
             },
             {
                 id: "person3_3",
                 name: "محمد عز الدين",
-                image: "images/defualt-avatar",
+                parentId: "person2_1",
+                image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
+                children: []
             },
             {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
+                id: "person3_4",
+                name: "آدم محمد",
+                parentId: "person2_2",
+                image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-            {
-                id: "person3_1",
-                name: "",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: [""]
-            },
-
+                children: []
+            }
+            // أضف باقي الجيل الثالث بنفس الطريقة مع parentId الصحيح
         ]
     },
     {
         generation_number: 4,
-        generation_name: "الجيل الرابع - ابناء الاحفاد",
+        generation_name: "الجيل الرابع - أبناء الأحفاد",
         members: [
-            // {
-            //     id: "person4_1",
-            //     name: "",
-            //     image: "images/defuat-avatar",
-            //     bio: "مهندس برمجيات، يعمل في شركة تقنية كبرى. متخصص في تطوير التطبيقات المحمولة والذكاء الاصطناعي. حاصل على ماجستير في علوم الحاسوب.",
-            //     birth_date: "1985-04-12",
-            //     children: []
-            // },
-            // {
-            //     id: "person4_2",
-            //     name: "سارة أحمد العلي",
-            //     image: "images/person4_2.jpg",
-            //     bio: "طبيبة أسنان، تدير عيادة خاصة. حاصلة على دكتوراه في طب الأسنان من جامعة أمريكية. متطوعة في عدة منظمات خيرية طبية.",
-            //     birth_date: "1988-11-08",
-            //     children: []
-            // },
-            // {
-            //     id: "person4_3",
-            //     name: "أمين فاطمة الحسن",
-            //     image: "images/person4_3.jpg",
-            //     bio: "محامي متخصص في القانون التجاري، يعمل في مكتب محاماة مرموق. حاصل على ماجستير في القانون الدولي. له مساهمات في مجال حقوق الإنسان.",
-            //     birth_date: "1982-01-25",
-            //     children: []
-            // },
-            // {
-            //     id: "person4_4",
-            //     name: "ليلى سعد العلي",
-            //     image: "images/person4_4.jpg",
-            //     bio: "مصممة جرافيك ومديرة إبداعية، تعمل في وكالة إعلانات دولية. حاصلة على جوائز في التصميم والإبداع. تدرّس التصميم في الجامعة كمحاضرة زائرة.",
-            //     birth_date: "1990-07-14",
-            //     children: []
-            // },
-            // {
-            //     id: "person4_5",
-            //     name: "كريم سعد العلي",
-            //     image: "images/person4_5.jpg",
-            //     bio: "طبيب قلب، يعمل في مستشفى جامعي. متخصص في جراحة القلب المفتوح. حاصل على زمالة من مستشفى أمريكي مرموق. له أبحاث منشورة في مجلات طبية عالمية.",
-            //     birth_date: "1987-03-03",
-            //     children: []
-            // },
-            // {
-            //     id: "person4_6",
-            //     name: "نادية يوسف الأحمد",
-            //     image: "images/person4_6.jpg",
-            //     bio: "مهندسة مدنية، تعمل في شركة استشارات هندسية. متخصصة في تصميم الجسور والأنفاق. حاصلة على ماجستير في الهندسة الإنشائية. تشارك في مشاريع البنية التحتية الكبرى.",
-            //     birth_date: "1983-12-19",
-            //     children: []
-            // }
+            // يمكن إضافة أعضاء الجيل الرابع بنفس الطريقة مع parentId
         ]
     }
 ];

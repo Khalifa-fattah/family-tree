@@ -28,6 +28,7 @@ body {
     text-align: right;
 }
 
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -499,4 +500,66 @@ body {
 
 .search-results::-webkit-scrollbar-thumb:hover {
     background: #2980b9;
+}
+
+.family {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+}
+
+.parent-name {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+    text-align: center;
+}
+
+.generation-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* مسافة بين مجموعات الأبناء */
+}
+
+.children {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; 
+}
+
+.member-card {
+    background: #f7f7f7;
+    padding: 0.5rem;
+    border-radius: 6px;
+    text-align: center;
+}
+/* إزالة أي خطوط تحت مجموعات الأعضاء */
+.generation-members,
+.family,
+.family .children,
+.member-card {
+    border: none !important;  /* يمنع أي border */
+    box-shadow: none !important; /* إذا كان فيه ظل يشبه خط */
+}
+
+/* تحسين عرض الأبناء */
+.family .children {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;        /* مسافة بين الأبناء */
+    justify-content: flex-start; /* محاذاة الأبناء إلى اليسار */
+}
+
+/* كل مجموعة أب تظهر في صف كامل */
+.family {
+    width: 100%;            /* يستغل كامل عرض الصفحة */
+    margin-bottom: 20px;    /* مسافة بين كل أب والآخر */
+}
+
+/* ترتيب الأبناء داخل كل أب */
+.family .children {
+    display: flex;
+    flex-wrap: wrap;        /* إذا تجاوز العدد، يذهب السطر الثاني داخل نفس الأب */
+    gap: 20px;              /* مسافة بين الأبناء */
+    justify-content: flex-start;
 }
