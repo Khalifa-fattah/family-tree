@@ -645,7 +645,7 @@ const familyData = [
             {
                 id: "person4_10",
                 name: "شذى عبدالفتاح",
-                parentId: "person3_",
+                parentId: "person3_34",
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "2006",
