@@ -129,7 +129,7 @@ const familyData = [
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: []
+                children: ["person4_28","person4_29","person4_30"]
             },
             {
                 id: "person3_2",
@@ -138,7 +138,7 @@ const familyData = [
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: []
+                children: ["person4_31"]
             },
             {
                 id: "person3_3",
@@ -147,7 +147,7 @@ const familyData = [
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: []
+                children: ["person4_32"]
             },
             {
                 id: "person3_4",
@@ -165,7 +165,7 @@ const familyData = [
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
+                children: ["person4_33","person4_34", "person4_35","person4_36"]
             },
             {
                 id: "person3_6",
@@ -183,7 +183,7 @@ const familyData = [
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
+                children: ["person4_37","person4_38","person4_39","person4_40"]
             },
             {
                 id: "person3_8",
@@ -192,7 +192,7 @@ const familyData = [
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
-                children: [""]
+                children: ["person4_41","person4_42","person4_43","person4_44","person4_45","person4_46"]
             },
             {
                 id: "person3_9",
@@ -299,7 +299,7 @@ const familyData = [
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: []
+                children: ["person4_47","person4_48","person4_49","person4_50"]
             },
             {
                 id: "person3_21",
@@ -673,7 +673,7 @@ const familyData = [
                 id: "person4_13",
                 name: "ترتيل عبدالفتاح",
                 parentId: "person3_34",
-                image: "images/defualt-avatar",
+                image: "images/person4_13.jpg",
                 bio: "",
                 birth_date: "2016",
                 children: []
