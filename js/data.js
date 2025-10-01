@@ -114,7 +114,7 @@ const familyData = [
                 image: "images/default-avatar",
                 bio: "",
                 birth_date: "",
-                children: ["person3_46","person3_47"]
+                children: ["person3_46","person3_47","person3_48"]
             },
         ]
     },
@@ -561,7 +561,242 @@ const familyData = [
         generation_number: 4,
         generation_name: "الجيل الرابع - أبناء الأحفاد",
         members: [
-           {
+            {
+                id: "person4_28",
+                name: "علا عاطف",
+                parentId: "person3_1",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_29",
+                name: "عهود عاطف",
+                parentId: "person3_1",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_30",
+                name: "هديل عاطف",
+                parentId: "person3_1",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_31",
+                name: "وليد زاهر",
+                parentId: "person3_2",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_32",
+                name: "رحيق",
+                parentId: "person3_3",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_25",
+                name: "اسماء محمد",
+                parentId: "person3_4",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_26",
+                name: "احمد محمد",
+                parentId: "person3_4",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_27",
+                name: "عزالدين محمد",
+                parentId: "person3_4",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_33",
+                name: "احمد سامي",
+                parentId: "person3_5",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_34",
+                name: "اسماء سامي",
+                parentId: "person3_5",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_35",
+                name: "اسعد سامي",
+                parentId: "person3_5",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_36",
+                name: "اشرقت سامي",
+                parentId: "person3_5",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_37",
+                name: "تسنيم",
+                parentId: "person3_7",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_38",
+                name: "عمرو",
+                parentId: "person3_7",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_39",
+                name: "تسابيح",
+                parentId: "person3_7",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_40",
+                name: "محمد",
+                parentId: "person3_7",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_41",
+                name: "تبيان",
+                parentId: "person3_8",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_42",
+                name: "احمد",
+                parentId: "person3_8",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_43",
+                name: "بنان",
+                parentId: "person3_8",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_44",
+                name: "ترنيم",
+                parentId: "person3_8",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_45",
+                name: "عمر",
+                parentId: "person3_8",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            
+            {
+                id: "person4_46",
+                name: "زينب",
+                parentId: "person3_8",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_47",
+                name: "عمار ياسر",
+                parentId: "person3_20",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_48",
+                name: "تبيان ياسر",
+                parentId: "person3_20",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_49",
+                name: "كمال ياسر",
+                parentId: "person3_20",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
+                id: "person4_50",
+                name: "محمد ياسر",
+                parentId: "person3_20",
+                image: "images/defualt-avatar",
+                bio: "",
+                birth_date: "",
+                children: []
+            },
+            {
                 id: "person4_1",
                 name: "محمد عادل",
                 parentId: "person3_29",
@@ -772,241 +1007,6 @@ const familyData = [
                 id: "person4_24",
                 name: "مشكاة حافظ",
                 parentId: "person3_36",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_25",
-                name: "اسماء محمد",
-                parentId: "person3_4",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_26",
-                name: "احمد محمد",
-                parentId: "person3_4",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_27",
-                name: "عزالدين محمد",
-                parentId: "person3_4",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_28",
-                name: "علا عاطف",
-                parentId: "person3_1",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_29",
-                name: "عهود عاطف",
-                parentId: "person3_1",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_30",
-                name: "هديل عاطف",
-                parentId: "person3_1",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_31",
-                name: "وليد زاهر",
-                parentId: "person3_2",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_32",
-                name: "رحيق",
-                parentId: "person3_3",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_33",
-                name: "احمد سامي",
-                parentId: "person3_5",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_34",
-                name: "اسماء سامي",
-                parentId: "person3_5",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_35",
-                name: "اسعد سامي",
-                parentId: "person3_5",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_36",
-                name: "اشرقت سامي",
-                parentId: "person3_5",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_37",
-                name: "تسنيم",
-                parentId: "person3_7",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_38",
-                name: "عمرو",
-                parentId: "person3_7",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_39",
-                name: "تسابيح",
-                parentId: "person3_7",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_40",
-                name: "محمد",
-                parentId: "person3_7",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_41",
-                name: "تبيان",
-                parentId: "person3_8",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_42",
-                name: "احمد",
-                parentId: "person3_8",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_43",
-                name: "بنان",
-                parentId: "person3_8",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_44",
-                name: "ترنيم",
-                parentId: "person3_8",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_45",
-                name: "عمر",
-                parentId: "person3_8",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            
-            {
-                id: "person4_46",
-                name: "زينب",
-                parentId: "person3_8",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_47",
-                name: "عمار ياسر",
-                parentId: "person3_20",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_48",
-                name: "تبيان ياسر",
-                parentId: "person3_20",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_49",
-                name: "كمال ياسر",
-                parentId: "person3_20",
-                image: "images/defualt-avatar",
-                bio: "",
-                birth_date: "",
-                children: []
-            },
-            {
-                id: "person4_50",
-                name: "محمد ياسر",
-                parentId: "person3_20",
                 image: "images/defualt-avatar",
                 bio: "",
                 birth_date: "",
