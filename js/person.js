@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
             row.style.marginBottom = '1rem';
 
             const childCard = createChildCard(child);
-            childCard.style.flex = '0 0 auto'; // لا يمتد
+            childCard.style.flex = '1'; // يمتد ليملأ عرض الصف
+childCard.style.maxWidth = '100%';
             row.appendChild(childCard);
 
             childrenContainer.appendChild(row);
