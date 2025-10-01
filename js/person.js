@@ -96,11 +96,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return card;
     }
-    if (person.parentId) {
-    const parent = data.find(p => p.id === person.parentId);
-    document.getElementById("personParent").textContent = parent ? parent.name : "غير متوفر";
+   // عرض اسم الوالد باستخدام parentId
+const parentElement = document.getElementById("personParent");
+
+if (person.parentId) {
+    const parent = getPersonById(person.parentId); // نستعمل الدالة الجاهزة من data.js
+    parentElement.textContent = parent ? parent.name : "غير متوفر";
 } else {
-    document.getElementById("personParent").textContent = "غير متوفر";
+    parentElement.textContent = "غير متوفر";
 }
     
     // دالة الانتقال لصفحة شخص آخر
