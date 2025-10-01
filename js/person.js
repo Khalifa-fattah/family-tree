@@ -96,7 +96,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return card;
     }
-    document.getElementById("personParent").textContent = person.parent || "غير متوفر";
+    if (person.parentId) {
+    const parent = data.find(p => p.id === person.parentId);
+    document.getElementById("personParent").textContent = parent ? parent.name : "غير متوفر";
+} else {
+    document.getElementById("personParent").textContent = "غير متوفر";
+}
     
     // دالة الانتقال لصفحة شخص آخر
     function navigateToPersonPage(personId) {
