@@ -589,3 +589,13 @@ body {
     font-size: 1.15em;
     box-sizing: border-box;
 }
+#personParent a {
+    text-decoration: none;   /* يلغي الخط التحتي */
+    color: #3498db;          /* لون جميل للرابط */
+    font-weight: bold;        /* يمكن جعله عريض لو حبيت */
+    cursor: pointer;          /* مؤشر اليد عند المرور */
+}
+#personParent a:hover {
+    text-decoration: underline;  /* يظهر خط عند المرور فقط */
+    color: #2c80b4;              /* تغيير اللون عند المرور */
+}

@@ -69,20 +69,19 @@ document.addEventListener('DOMContentLoaded', function() {
         noChildrenMessage.classList.add('hidden');
         childrenContainer.innerHTML = '';
 
-        const maxPerRow = 4;
-        let row;
-        children.forEach((child, index) => {
-            if (index % maxPerRow === 0) {
-                row = document.createElement('div');
-                row.className = 'children-row';
-                row.style.display = 'flex';
-                row.style.gap = '1rem';
-                row.style.marginBottom = '1rem';
-                childrenContainer.appendChild(row);
-            }
+        // كل طفل في صفه الخاص
+        children.forEach((child) => {
+            const row = document.createElement('div');
+            row.className = 'children-row';
+            row.style.display = 'flex';
+            row.style.justifyContent = 'center';
+            row.style.marginBottom = '1rem';
+
             const childCard = createChildCard(child);
-            childCard.style.flex = '1';
+            childCard.style.flex = '0 0 auto'; // لا يمتد
             row.appendChild(childCard);
+
+            childrenContainer.appendChild(row);
         });
     }
     
