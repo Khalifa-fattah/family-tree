@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // اسم الوالد كرابط
         const parentElement = document.getElementById("personParent");
-        parentElement.innerHTML = ''; // نضمن أنه فارغ قبل الإضافة
+        parentElement.innerHTML = '';
         if (person.parentId) {
             const parent = getPersonById(person.parentId);
             if (parent) {
@@ -105,14 +105,15 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = `person.html?id=${personId}`;
     }
     
+    // دالة تنسيق التاريخ ميلادي فقط
     function formatDate(dateString) {
         if (!dateString) return 'غير محدد';
         const date = new Date(dateString);
-        try {
-            return date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' });
-        } catch {
-            return date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' });
-        }
+        return date.toLocaleDateString('ar', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
     }
     
     function showError(message) {
