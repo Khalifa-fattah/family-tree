@@ -28,7 +28,6 @@ body {
     text-align: right;
 }
 
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -215,9 +214,9 @@ body {
 
 .generation-members {
     padding: 1.5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 /* كارت العضو */
@@ -229,6 +228,11 @@ body {
     transition: var(--transition);
     cursor: pointer;
     border: 2px solid transparent;
+
+    /* ✅ التعديل هنا */
+    flex: 0 0 calc(50% - 1rem);   /* كل عضو ياخد نص العرض */
+    max-width: calc(50% - 1rem);
+    box-sizing: border-box;
 }
 
 .member-card:hover {
@@ -527,75 +531,13 @@ body {
     gap: 1rem; 
 }
 
-.member-card {
-    background: #f7f7f7;
-    padding: 0.5rem;
-    border-radius: 6px;
-    text-align: center;
-}
-/* إزالة أي خطوط تحت مجموعات الأعضاء */
-.generation-members,
-.family,
-.family .children,
-.member-card {
-    border: none !important;  /* يمنع أي border */
-    box-shadow: none !important; /* إذا كان فيه ظل يشبه خط */
-}
-
-/* تحسين عرض الأبناء */
-.family .children {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;        /* مسافة بين الأبناء */
-    justify-content: flex-start; /* محاذاة الأبناء إلى اليسار */
-}
-
-/* كل مجموعة أب تظهر في صف كامل */
-.family {
-    width: 100%;            /* يستغل كامل عرض الصفحة */
-    margin-bottom: 20px;    /* مسافة بين كل أب والآخر */
-}
-
-/* ترتيب الأبناء داخل كل أب */
-.family .children {
-    display: flex;
-    flex-wrap: wrap;        /* إذا تجاوز العدد، يذهب السطر الثاني داخل نفس الأب */
-    gap: 20px;              /* مسافة بين الأبناء */
-    justify-content: flex-start;
-}
-
-/* كل مجموعة أب تظهر في صف كامل */
-.family {
-    width: 100%;
-    display: flex;
-    flex-direction: column; /* الأباس يظهر فوق الأبناء */
-    margin-bottom: 20px;
-}
-
-/* ترتيب الأبناء داخل كل أب لتملأ العرض */
-.family .children {
-    display: flex;
-    flex-wrap: wrap;           /* إذا عدد الأبناء كبير، ينقسم إلى أكثر من صف */
-    justify-content: space-between;  /* يملأ المسافة بين الأبناء بالكامل */
-    gap: 20px;
-}
-
-/* تكبير مساحة واسم العضو */
-.member-card {
-    flex: 1 1 120px;       /* كل عضو يحاول يكبر ليملأ المساحة */
-    max-width: 160px;      /* يمكن تعديلها حسب الرغبة */
-    text-align: center;
-    padding: 10px 12px;
-    font-size: 1.15em;
-    box-sizing: border-box;
-}
 #personParent a {
-    text-decoration: none;   /* يلغي الخط التحتي */
-    color: #3498db;          /* لون جميل للرابط */
-    font-weight: bold;        /* يمكن جعله عريض لو حبيت */
-    cursor: pointer;          /* مؤشر اليد عند المرور */
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    cursor: pointer;
 }
 #personParent a:hover {
-    text-decoration: underline;  /* يظهر خط عند المرور فقط */
-    color: #2c80b4;              /* تغيير اللون عند المرور */
+    text-decoration: underline;
+    color: #2c80b4;
 }
