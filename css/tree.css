@@ -78,26 +78,26 @@ body {
   margin-left: 40px;
 }
 
-/* --- ألوان بطاقات الأجيال (النسخة الصحيحة) --- */
+/* --- ألوان بطاقات الأجيال (النسخة النهائية والصحيحة) --- */
 
 /* الجيل الأول (الأجداد) - لون أزرق داكن */
-.boc-node[data-n-id].gen-1-template > rect {
-    fill: #2c3e50;
+[data-tags*="gen-1"] rect {
+    fill: #2c3e50 !important;
 }
 
 /* الجيل الثاني (الآباء) - لون أزرق ثانوي */
-.boc-node[data-n-id].gen-2-template > rect {
-    fill: #3498db;
+[data-tags*="gen-2"] rect {
+    fill: #3498db !important;
 }
 
 /* الجيل الثالث (الأحفاد) - لون أخضر */
-.boc-node[data-n-id].gen-3-template > rect {
-    fill: #27ae60;
+[data-tags*="gen-3"] rect {
+    fill: #27ae60 !important;
 }
 
 /* الجيل الرابع (أبناء الأحفاد) - لون رمادي داكن */
-.boc-node[data-n-id].gen-4-template > rect {
-    fill: #7f8c8d;
+[data-tags*="gen-4"] rect {
+    fill: #7f8c8d !important;
 }
 
 /* تغيير لون النص في كل البطاقات إلى الأبيض ليكون واضحاً */
