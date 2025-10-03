@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // خريطة ID → عضو لتسريع البحث
     const memberMap = {};
-    data.forEach(gen => { // <-- استخدم 'data' بدل 'familyData'
+    data.forEach(gen => {
         gen.members.forEach(m => memberMap[m.id] = m);
     });
 
-    // دالة توليد لون من سلسلة نصية (اسم الأب)
+    // دالة توليد لون من اسم الأب
     function stringToColor(str) {
         let hash = 0;
         for (let i = 0; i < str.length; i++) {
@@ -20,68 +20,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function buildTree() {
-        const generations = data.sort((a, b) => a.generation_number - b.generation_number);
+        // إيجاد كل الأفراد بدون ترتيب حسب الأجيال
+        const roots = data.flatMap(gen => gen.members.filter(m => !m.parentId));
 
-        generations.forEach((gen) => {
-            const generationRow = document.createElement('div');
-            generationRow.className = 'generation';
-
-            // تجميع الأبناء حسب parentId
-            const parentsMap = {};
-            gen.members.forEach(member => {
-                let parentName = '';
-                if (member.parentId && memberMap[member.parentId]) {
-                    parentName = memberMap[member.parentId].name;
-                }
-                if (!parentsMap[parentName]) parentsMap[parentName] = [];
-                parentsMap[parentName].push(member);
-            });
-
-            Object.keys(parentsMap).forEach((parentName) => {
-                const familyDiv = document.createElement('div');
-                familyDiv.className = 'family';
-
-                let parentColor = parentName ? stringToColor(parentName) : "#95a5a6";
-
-                if (parentName) {
-                    const parentCard = document.createElement('div');
-                    parentCard.className = 'parent-card';
-                    parentCard.textContent = parentName;
-                    parentCard.style.backgroundColor = parentColor;
-                    parentCard.onclick = () => {
-                        const parent = findMemberByName(parentName);
-                        if(parent) window.location.href = `person.html?id=${parent.id}`;
-                    };
-                    familyDiv.appendChild(parentCard);
-                }
-
-                const childrenDiv = document.createElement('div');
-                childrenDiv.className = 'children';
-                parentsMap[parentName].forEach(child => {
-                    const childCard = document.createElement('div');
-                    childCard.className = 'child-card';
-                    childCard.textContent = child.name;
-                    childCard.style.backgroundColor = parentColor + "33"; // نسخة فاتحة للطفل
-                    childCard.onclick = () => {
-                        window.location.href = `person.html?id=${child.id}`;
-                    };
-                    childrenDiv.appendChild(childCard);
-                });
-
-                familyDiv.appendChild(childrenDiv);
-                generationRow.appendChild(familyDiv);
-            });
-
-            treeContainer.appendChild(generationRow);
+        roots.forEach(root => {
+            const rootDiv = createPersonBranch(root);
+            treeContainer.appendChild(rootDiv);
         });
     }
 
-    function findMemberByName(name) {
-        for(let gen of data){
-            const member = gen.members.find(m => m.name === name);
-            if(member) return member;
+    function createPersonBranch(person) {
+        const familyDiv = document.createElement('div');
+        familyDiv.className = 'family';
+
+        // لون العائلة
+        const color = stringToColor(person.name);
+
+        // بطاقة الشخص
+        const personCard = document.createElement('div');
+        personCard.className = 'person-card';
+        personCard.textContent = person.name;
+        personCard.style.backgroundColor = color;
+        personCard.onclick = () => {
+            window.location.href = `person.html?id=${person.id}`;
+        };
+        familyDiv.appendChild(personCard);
+
+        // إنشاء فرع الأبناء
+        const children = Object.values(memberMap).filter(m => m.parentId === person.id);
+        if (children.length > 0) {
+            const childrenDiv = document.createElement('div');
+            childrenDiv.className = 'children';
+            children.forEach(child => {
+                const childBranch = createPersonBranch(child);
+                childrenDiv.appendChild(childBranch);
+            });
+            familyDiv.appendChild(childrenDiv);
         }
-        return null;
+
+        return familyDiv;
     }
 
     buildTree();
