@@ -599,19 +599,17 @@ body {
     text-decoration: underline;  /* يظهر خط عند المرور فقط */
     color: #2c80b4;              /* تغيير اللون عند المرور */
 }
-.btn-tree {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #4CAF50; /* لون أخضر متناسق */
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.tree-link {
+  display: inline-block;
+  margin-top: 10px;
+  background: #3498db;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
 }
-
-.btn-tree:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
+.tree-link:hover {
+  background: #217dbb;
 }
