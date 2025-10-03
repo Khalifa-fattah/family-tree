@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // خريطة ID → عضو لتسريع البحث
     const memberMap = {};
-    familyData.forEach(gen => {
+    data.forEach(gen => { // <-- استخدم 'data' بدل 'familyData'
         gen.members.forEach(m => memberMap[m.id] = m);
     });
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function buildTree() {
-        const generations = familyData.sort((a, b) => a.generation_number - b.generation_number);
+        const generations = data.sort((a, b) => a.generation_number - b.generation_number);
 
         generations.forEach((gen) => {
             const generationRow = document.createElement('div');
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function findMemberByName(name) {
-        for(let gen of familyData){
+        for(let gen of data){
             const member = gen.members.find(m => m.name === name);
             if(member) return member;
         }
