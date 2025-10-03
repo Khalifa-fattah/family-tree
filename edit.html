@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل البيانات - شجرة العائلة</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; }
+        .edit-section { background: #fff; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: var(--shadow ); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-family: 'Cairo', sans-serif;
+        }
+        .btn-action { background-color: #27ae60; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+        #output-container { margin-top: 2rem; }
+        #output-data { width: 100%; height: 400px; font-family: monospace; direction: ltr; text-align: left; background: #2c3e50; color: #f1c40f; padding: 1rem; border-radius: 5px; }
+        .copy-btn { background-color: var(--secondary-color); color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 1rem; display: block; width: 100%; }
+        h3 { border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+        .full-width { grid-column: 1 / -1; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="main-title">تعديل بيانات العائلة (أوفلاين)</h1>
+            <a href="index.html" class="btn-tree" style="margin-top:1rem;">العودة للرئيسية</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- قسم إضافة شخص جديد -->
+            <div class="edit-section">
+                <h3><span style="color: #27ae60;">+</span> إضافة شخص جديد</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل:</label>
+                        <input type="text" id="name" placeholder="فلان الفلاني">
+                    </div>
+                    <div class="form-group">
+                        <label for="birth_date">تاريخ الميلاد:</label>
+                        <input type="text" id="birth_date" placeholder="مثال: 1990-05-20 أو 1990">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">الجنس:</label>
+                        <select id="gender">
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">الحالة:</label>
+                        <select id="status">
+                            <option value="alive">على قيد الحياة</option>
+                            <option value="deceased">متوفى</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation">الجيل:</label>
+                        <select id="generation"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="parent">الأب (من الجيل السابق):</label>
+                        <select id="parent"></select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="bio">نبذة قصيرة (اختياري):</label>
+                        <textarea id="bio" rows="3"></textarea>
+                    </div>
+                </div>
+                <button id="addPersonBtn" class="btn-action">إنشاء كود الإضافة</button>
+            </div>
+
+            <!-- قسم تعديل شخص موجود -->
+            <div class="edit-section">
+                <h3><span style="color: #e74c3c;">✎</span> تعديل شخص موجود</h3>
+                <div class="form-group">
+                    <label for="personToEdit">اختر الشخص للتعديل:</label>
+                    <select id="personToEdit"></select>
+                </div>
+                <div id="editFields" class="form-grid" style="display:none;">
+                    <div class="form-group">
+                        <label for="edit_name">الاسم:</label>
+                        <input type="text" id="edit_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_birth_date">تاريخ الميلاد:</label>
+                        <input type="text" id="edit_birth_date">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="edit_bio">النبذة:</label>
+                        <textarea id="edit_bio" rows="3"></textarea>
+                    </div>
+                </div>
+                <button id="updatePersonBtn" class="btn-action" style="background-color: #e74c3c; display:none;">إنشاء كود التعديل</button>
+            </div>
+
+            <!-- صندوق الإخراج -->
+            <div id="output-container">
+                <h3>الأكواد المحدثة (جاهزة للنسخ)</h3>
+                <p>انسخ الأكواد من هذا الصندوق وأضفها/استبدلها في ملف <strong>js/data.js</strong> حسب التعليمات.</p>
+                <textarea id="output-data" readonly></textarea>
+                <button id="copyBtn" class="copy-btn">نسخ إلى الحافظة</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- عناصر الإضافة ---
+            const generationSelect = document.getElementById('generation');
+            const parentSelect = document.getElementById('parent');
+            const nameInput = document.getElementById('name');
+            const birthDateInput = document.getElementById('birth_date');
+            const genderSelect = document.getElementById('gender');
+            const statusSelect = document.getElementById('status');
+            const bioInput = document.getElementById('bio');
+            const addPersonBtn = document.getElementById('addPersonBtn');
+
+            // --- عناصر التعديل ---
+            const personToEditSelect = document.getElementById('personToEdit');
+            const editFieldsContainer = document.getElementById('editFields');
+            const editNameInput = document.getElementById('edit_name');
+            const editBirthDateInput = document.getElementById('edit_birth_date');
+            const editBioInput = document.getElementById('edit_bio');
+            const updatePersonBtn = document.getElementById('updatePersonBtn');
+
+            // --- عناصر الإخراج ---
+            const outputTextarea = document.getElementById('output-data');
+            const copyBtn = document.getElementById('copyBtn');
+
+            // نسخة محلية من البيانات لتجنب تعديل الأصل
+            const localFamilyData = JSON.parse(JSON.stringify(familyData));
+            const allMembers = localFamilyData.flatMap(g => g.members);
+            outputTextarea.value = ''; // مسح الصندوق عند التحميل
+
+            // --- دوال الإضافة ---
+            function populateGenerations() {
+                localFamilyData.forEach(gen => {
+                    const option = document.createElement('option');
+                    option.value = gen.generation_number;
+                    option.textContent = gen.generation_name;
+                    generationSelect.appendChild(option);
+                });
+            }
+
+            function populateParents() {
+                const selectedGenNum = parseInt(generationSelect.value);
+                parentSelect.innerHTML = '<option value="">-- لا يوجد (للجيل الأول) --</option>';
+                const parentGenNum = selectedGenNum - 1;
+                if (parentGenNum > 0) {
+                    const parentGeneration = localFamilyData.find(g => g.generation_number === parentGenNum);
+                    if (parentGeneration && parentGeneration.members.length > 0) {
+                        parentSelect.innerHTML = '<option value="">-- اختر الأب --</option>';
+                        parentGeneration.members.forEach(person => {
+                            const option = document.createElement('option');
+                            option.value = person.id;
+                            option.textContent = person.name;
+                            parentSelect.appendChild(option);
+                        });
+                    }
+                }
+            }
+
+                        function renderAddOutput(newPersonObject, parentId) {
+                let outputString = `\n// --- ➕ كود إضافة شخص جديد --- \n`;
+                outputString += `// 1. أضف الكائن التالي إلى مصفوفة 'members' في الجيل رقم ${newPersonObject.generation_number}\n`;
+                
+                // بناء الكائن يدوياً بدون علامات تنصيص للمفاتيح
+                outputString += `{\n`;
+                outputString += `    id: "${newPersonObject.id}",\n`;
+                outputString += `    name: "${newPersonObject.name}",\n`;
+                outputString += `    parentId: ${newPersonObject.parentId ? `"${newPersonObject.parentId}"` : null},\n`;
+                outputString += `    gender: "${newPersonObject.gender}",\n`;
+                outputString += `    image: "images/default-avatar.png",\n`;
+                outputString += `    bio: "${newPersonObject.bio}",\n`;
+                outputString += `    birth_date: "${newPersonObject.birth_date}",\n`;
+                outputString += `    children: []\n`;
+                outputString += `},\n`;
+
+                if (parentId) {
+                    outputString += `\n// 2. ابحث عن الأب (id: "${parentId}") وأضف "${newPersonObject.id}" إلى مصفوفة 'children' الخاصة به.\n`;
+                }
+                outputTextarea.value += outputString;
+            }
+
+
+            addPersonBtn.addEventListener('click', () => {
+                const name = nameInput.value.trim();
+                const genNum = parseInt(generationSelect.value);
+                const parentId = parentSelect.value;
+
+                if (!name || !genNum) { alert('الرجاء إدخال الاسم واختيار الجيل.'); return; }
+                if (genNum > 1 && !parentId) { alert('الرجاء اختيار الأب من الجيل السابق.'); return; }
+
+                const targetGeneration = localFamilyData.find(g => g.generation_number === genNum);
+                const newId = `person${genNum}_${targetGeneration.members.length + 1}_${Date.now()}`;
+                
+                let bio = bioInput.value.trim();
+                if (statusSelect.value === 'deceased' && !bio.includes('له الرحمة')) {
+                    bio = (bio ? bio + ' - ' : '') + 'له الرحمة';
+                }
+
+                const newPerson = {
+                    id: newId,
+                    name: name,
+                    parentId: parentId || null,
+                    gender: genderSelect.value,
+                    image: "images/default-avatar.png",
+                    bio: bio,
+                    birth_date: birthDateInput.value.trim(),
+                    children: [],
+                    generation_number: genNum // خاصية مؤقتة
+                };
+
+                alert(`تم إنشاء كود إضافة "${name}" بنجاح!`);
+                renderAddOutput(newPerson, parentId);
+                [nameInput, birthDateInput, bioInput].forEach(input => input.value = '');
+            });
+
+            // --- دوال التعديل ---
+            function populatePeopleToEdit() {
+                personToEditSelect.innerHTML = '<option value="">-- اختر شخصاً للتعديل --</option>';
+                allMembers.sort((a, b) => a.name.localeCompare(b.name)).forEach(person => {
+                    const option = document.createElement('option');
+                    option.value = person.id;
+                    option.textContent = person.name;
+                    personToEditSelect.appendChild(option);
+                });
+            }
+
+            personToEditSelect.addEventListener('change', () => {
+                const personId = personToEditSelect.value;
+                if (!personId) {
+                    editFieldsContainer.style.display = 'none';
+                    updatePersonBtn.style.display = 'none';
+                    return;
+                }
+                const person = allMembers.find(p => p.id === personId);
+                editNameInput.value = person.name;
+                editBirthDateInput.value = person.birth_date || '';
+                editBioInput.value = person.bio || '';
+                editFieldsContainer.style.display = 'grid';
+                updatePersonBtn.style.display = 'block';
+            });
+
+                        function renderUpdateOutput(personId, updatedFields) {
+                let outputString = `\n// --- ✎ كود تعديل شخص --- \n`;
+                outputString += `// ابحث عن الشخص صاحب الـ id: "${personId}" وقم بتحديث خصائصه كالتالي:\n`;
+                
+                // بناء كود التحديث يدوياً
+                outputString += `// name: "${updatedFields.name}",\n`;
+                outputString += `// birth_date: "${updatedFields.birth_date}",\n`;
+                outputString += `// bio: "${updatedFields.bio}",\n`;
+
+                outputTextarea.value += outputString;
+            }
+
+
+            updatePersonBtn.addEventListener('click', () => {
+                const personId = personToEditSelect.value;
+                const updatedFields = {
+                    name: editNameInput.value.trim(),
+                    birth_date: editBirthDateInput.value.trim(),
+                    bio: editBioInput.value.trim()
+                };
+                alert(`تم إنشاء كود تعديل "${updatedFields.name}" بنجاح!`);
+                renderUpdateOutput(personId, updatedFields);
+            });
+
+            // --- دوال عامة ---
+            copyBtn.addEventListener('click', () => {
+                outputTextarea.select();
+                document.execCommand('copy');
+                alert('تم نسخ الأكواد إلى الحافظة!');
+            });
+
+            // --- بدء التشغيل ---
+            populateGenerations();
+            populateParents();
+            populatePeopleToEdit();
+            generationSelect.addEventListener('change', populateParents);
+        });
+    </script>
+</body>
+</html>

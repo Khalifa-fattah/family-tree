@@ -229,7 +229,7 @@ const familyData = [
                 image: "",
                 bio: "",
                 birth_date: "",
-                children: []
+                children: ["person4_51_1759499998516"]
             },
             {
                 id: "person3_13",
@@ -1012,7 +1012,18 @@ const familyData = [
                 bio: "",
                 birth_date: "",
                 children: []
-            }
+            },
+            {
+    id: "person4_51_1759499998516",
+    name: "محمد حسام",
+    parentId: "person3_12",
+    gender: "male",
+    image: "images/default-avatar.png",
+    bio: "",
+    birth_date: "2009",
+    children: []
+            },
+            
             // يمكن إضافة أعضاء الجيل الرابع بنفس الطريقة مع parentId
         ]
     }
