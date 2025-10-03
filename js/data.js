@@ -6,7 +6,7 @@ const familyData = [
         members: [
             {
                 id: "person1_1",
-                partnerId: "person1_2"
+                partnerId: "person1_2",
                 name: "احمد عبيد",
                 image: "images/default-avatar",
                 bio: "",
