@@ -31,24 +31,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // تجميع الأبناء حسب parentId
         const parentsMap = {};
-generation.members.forEach(member => {
-    let parentName = ''; // نص فارغ بشكل افتراضي
-    if (generation.generation_number >= 3 && member.parentId) {
-        for (let gen of familyData) {
-            const parent = gen.members.find(m => m.id === member.parentId);
-            if (parent) {
-                parentName = parent.name;
-                break;
+        generation.members.forEach(member => {
+            let parentName = '';
+            if (generation.generation_number >= 3 && member.parentId) {
+                for (let gen of familyData) {
+                    const parent = gen.members.find(m => m.id === member.parentId);
+                    if (parent) {
+                        parentName = parent.name;
+                        break;
+                    }
+                }
             }
-        }
-    }
-    if (!parentsMap[parentName]) {
-        parentsMap[parentName] = [];
-    }
-    parentsMap[parentName].push(member);
-});
+            member.parentName = parentName; // مهم للبحث المتقدم
+            if (!parentsMap[parentName]) {
+                parentsMap[parentName] = [];
+            }
+            parentsMap[parentName].push(member);
+        });
 
-        
         Object.keys(parentsMap).forEach(parentName => {
             const familyDiv = document.createElement('div');
             familyDiv.className = 'family';
@@ -122,7 +122,17 @@ generation.members.forEach(member => {
     }
     
     function performSearch(query) {
-        const results = searchPeople(query);
+        const results = familyData.flatMap(generation => 
+            generation.members.filter(member => {
+                const nameMatch = member.name.toLowerCase().includes(query.toLowerCase());
+                const generationMatch = generation.generation_name.toLowerCase().includes(query.toLowerCase());
+                const parentMatch = member.parentName?.toLowerCase().includes(query.toLowerCase());
+                return nameMatch || generationMatch || parentMatch;
+            }).map(member => ({
+                ...member,
+                generation_name: generation.generation_name
+            }))
+        );
         displaySearchResults(results);
     }
     
