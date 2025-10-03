@@ -2,7 +2,6 @@ window.onload = function () {
     // 1. تحويل البيانات مع إضافة "وسم" (tag) لكل جيل
     const chartData = [];
     familyData.forEach(generation => {
-        // إنشاء اسم للوسم بناءً على رقم الجيل، مثال: "gen-1", "gen-2"
         const generationTag = `gen-${generation.generation_number}`;
 
         generation.members.forEach(person => {
@@ -11,7 +10,7 @@ window.onload = function () {
                 pid: person.parentId,
                 name: person.name,
                 img: (person.image && person.image.includes('.')) ? person.image : 'images/default-avatar.png',
-                tags: [generationTag] // <-- هذا هو السطر الجديد الذي يضيف الوسم
+                tags: [generationTag] // إضافة الوسم لكل شخص
             };
 
             if (person.partnerId) {
@@ -22,41 +21,40 @@ window.onload = function () {
         });
     });
 
-    // 2. إعدادات الشجرة مع تحديد ألوان البطاقات لكل جيل
-    OrgChart.templates.ana.field_0 = '<text class="field_0" style="font-size: 18px;" fill="#ffffff" x="125" y="95" text-anchor="middle">{val}</text>';
+    // --- الجزء الجديد والمهم: تعريف قوالب ملونة لكل جيل ---
+    // ننسخ القالب الأصلي 'ana' وننشئ قوالب جديدة بأسماء مختلفة
+    OrgChart.templates['gen-1-template'] = Object.assign({}, OrgChart.templates.ana);
+    OrgChart.templates['gen-2-template'] = Object.assign({}, OrgChart.templates.ana);
+    OrgChart.templates['gen-3-template'] = Object.assign({}, OrgChart.templates.ana);
+    OrgChart.templates['gen-4-template'] = Object.assign({}, OrgChart.templates.ana);
+    // -----------------------------------------------------------
 
+    // 2. إعدادات الشجرة
     var chart = new OrgChart(document.getElementById("tree"), {
         nodes: chartData,
-        template: "ana",
+        
+        onNodeClick: function(args) {
+            return false; // يمنع فتح صفحة التفاصيل الافتراضية
+        },
+
         nodeBinding: {
             field_0: "name",
             img_0: "img"
         },
         
-        // --- هذا هو الجزء الجديد الذي يحدد الألوان ---
+        // --- تعديل مهم: نربط كل وسم بالقالب الملون الخاص به ---
         tags: {
-            "gen-1": {
-                template: "ana", // يمكن تحديد قالب مختلف لكل جيل إذا أردت
-                nodeMenu: { // تغيير لون قائمة التفاصيل لتناسب البطاقة
-                    details: { text: "تفاصيل", icon: OrgChart.icon.details(24, 24, '#fff'), onClick: (nodeId) => {} }
-                }
-            },
-            "gen-2": {
-                template: "ana"
-            },
-            "gen-3": {
-                template: "ana"
-            },
-            "gen-4": {
-                template: "ana"
-            }
+            "gen-1": { template: "gen-1-template" },
+            "gen-2": { template: "gen-2-template" },
+            "gen-3": { template: "gen-3-template" },
+            "gen-4": { template: "gen-4-template" }
         },
-        // -----------------------------------------
+        // ----------------------------------------------------
 
         partnerSeparation: 200,
         enableSearch: true,
         nodeMenu: {
-            details: { text: "تفاصيل" },
+            details: { text: "تفاصيل" }
         },
         rootId: "person1_1",
         mouseScrool: OrgChart.action.zoom,
