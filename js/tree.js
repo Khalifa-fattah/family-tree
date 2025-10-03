@@ -1,92 +1,51 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const treeWrapper = document.getElementById('tree-wrapper');
-  const treeContainer = document.getElementById('tree');
+window.onload = function () {
+    // هذا الكود يضمن أن الصفحة وملف البيانات قد تم تحميلهما بالكامل
 
-  // بناء الشجرة من ملف data.js
-  function buildTree(data, parentId = null) {
-    return data.filter(p => p.parentId === parentId)
-      .map(p => ({
-        ...p,
-        children: buildTree(data, p.id)
-      }));
-  }
+    // 1. تحويل بيانات العائلة إلى تنسيق يفهمه OrgChart
+    const chartData = [];
+    familyData.forEach(generation => {
+        generation.members.forEach(person => {
+            // ننشئ كائن الشخص الأساسي
+            let personNode = {
+                id: person.id,
+                pid: person.parentId, // parentId هو نفسه pid
+                name: person.name,
+                img: person.image || 'images/default-avatar.png'
+            };
 
-  const treeData = buildTree(familyData);
+            // **الخطوة الجديدة: البحث عن الشريك وربطه**
+            // إذا كان للشخص partnerId، نضيفه إلى خاصية pids
+            if (person.partnerId) {
+                personNode.pids = [person.partnerId];
+            }
 
-  function renderTree(nodes, level = 0) {
-    if (!nodes.length) return '';
-    let html = `<div class="tree-level">`;
-    nodes.forEach(node => {
-      html += `
-        <div class="tree-node ${node.parentId ? '' : 'parent'}">
-          ${node.name}
-        </div>
-      `;
+            chartData.push(personNode);
+        });
     });
-    html += `</div>`;
-    nodes.forEach(node => {
-      if (node.children.length) {
-        html += `<div class="tree-children">${renderTree(node.children, level + 1)}</div>`;
-      }
+
+    // 2. إعدادات الشجرة
+    var chart = new OrgChart(document.getElementById("tree"), {
+        nodes: chartData, // استخدام البيانات المحولة
+        template: "ana", // قالب يدعم الصور
+        nodeBinding: {
+            field_0: "name", // عرض الاسم
+            img_0: "img"     // عرض الصورة
+        },
+        
+        // إعدادات مهمة للتعامل مع الشركاء
+        partnerSeparation: 200, // المسافة بين الشريكين
+        
+        // إعدادات إضافية
+        enableSearch: true, // تفعيل البحث
+        nodeMenu: {
+            details: { text: "تفاصيل" },
+        },
+        // تحديد الجد كجذر للشجرة
+        rootId: "person1_1",
+        
+        // إعدادات التكبير والتصغير والتحريك
+        mouseScrool: OrgChart.action.zoom,
+        layout: OrgChart.mixed,
+        scaleInitial: OrgChart.match.boundary,
     });
-    return html;
-  }
-
-  treeContainer.innerHTML = renderTree(treeData);
-
-  // ========== التحكم في الزووم والتحريك ==========
-  let scale = 1;
-  let posX = 0, posY = 0;
-  let isDragging = false;
-  let startX, startY;
-
-  // التكبير والتصغير بعجلة الماوس
-  treeWrapper.addEventListener('wheel', e => {
-    e.preventDefault();
-    const zoomIntensity = 0.1;
-    if (e.deltaY < 0) {
-      scale += zoomIntensity;
-    } else {
-      scale = Math.max(0.2, scale - zoomIntensity);
-    }
-    updateTransform();
-  });
-
-  // السحب بالماوس
-  treeWrapper.addEventListener('mousedown', e => {
-    isDragging = true;
-    startX = e.clientX - posX;
-    startY = e.clientY - posY;
-  });
-
-  document.addEventListener('mouseup', () => isDragging = false);
-
-  document.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    posX = e.clientX - startX;
-    posY = e.clientY - startY;
-    updateTransform();
-  });
-
-  // دعم اللمس (موبايل)
-  treeWrapper.addEventListener('touchstart', e => {
-    if (e.touches.length === 1) {
-      isDragging = true;
-      startX = e.touches[0].clientX - posX;
-      startY = e.touches[0].clientY - posY;
-    }
-  });
-
-  treeWrapper.addEventListener('touchend', () => isDragging = false);
-
-  treeWrapper.addEventListener('touchmove', e => {
-    if (!isDragging || e.touches.length !== 1) return;
-    posX = e.touches[0].clientX - startX;
-    posY = e.touches[0].clientY - startY;
-    updateTransform();
-  });
-
-  function updateTransform() {
-    treeWrapper.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-  }
-});
+};
