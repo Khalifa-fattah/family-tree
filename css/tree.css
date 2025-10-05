@@ -1,81 +1,45 @@
+/* إعدادات عامة للصفحة */
 body {
   font-family: 'Cairo', sans-serif;
   margin: 0;
   padding: 0;
-  background: #f4f6f9;
-  color: #333;
+  background-color: #f4f6f9;
 }
 
+/* تصميم رأس الصفحة */
 .header {
-  background: #2c3e50;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
   color: #fff;
   text-align: center;
-  padding: 20px 0;
+  padding: 2rem 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .header .main-title {
   margin: 0;
-  font-size: 28px;
+  font-family: 'Amiri', serif;
+  font-size: 2.5rem;
 }
 
 .header .subtitle {
-  margin: 5px 0 0;
-  font-size: 16px;
-  opacity: 0.8;
+  margin: 0.5rem 0 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
 }
 
+/* تصميم ذيل الصفحة */
 .footer {
-  background: #2c3e50;
+  background-color: #2c3e50;
   color: #fff;
   text-align: center;
-  padding: 10px 0;
-  position: relative;
-  bottom: 0;
+  padding: 1.5rem 0;
+  margin-top: 0; /* إزالة أي هامش علوي */
+}
+
+/* هذا هو العنصر الذي يحتوي على الشجرة */
+#tree {
   width: 100%;
-}
-
-.tree-container {
-  width: 100%;
-  height: calc(100vh - 140px);
-  overflow: hidden;
-  background: #f9f9f9;
-  position: relative;
-}
-
-#tree-wrapper {
-  transform-origin: 0 0;
-  transition: transform 0.1s ease-out;
-  cursor: grab;
-}
-
-#tree-wrapper:active {
-  cursor: grabbing;
-}
-
-.tree-level {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.tree-node {
-  background: #fff;
-  border: 2px solid #3498db;
-  padding: 10px 15px;
-  margin: 0 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  font-weight: bold;
-  transition: transform 0.3s;
-}
-
-.tree-node:hover {
-  transform: scale(1.05);
-  background: #ecf6fc;
-}
-
-.tree-children {
-  margin-left: 40px;
+  height: calc(100vh - 200px); /* تعديل الارتفاع ليناسب حجم الهيدر والفوتر */
 }
 
 /* --- ألوان بطاقات الأجيال (النسخة النهائية والصحيحة) --- */
@@ -103,5 +67,12 @@ body {
 /* تغيير لون النص في كل البطاقات إلى الأبيض ليكون واضحاً */
 .boc-node .field_0 {
     fill: #ffffff !important;
+    font-size: 16px !important; /* تكبير الخط قليلاً */
+    font-weight: bold;
 }
 
+/* تحسين مظهر الصورة داخل البطاقة */
+.boc-node circle {
+    stroke: rgba(255, 255, 255, 0.7) !important; /* إضافة إطار أبيض شفاف حول الصورة */
+    stroke-width: 3px !important;
+}
