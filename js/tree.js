@@ -7,8 +7,8 @@ window.onload = function () {
         '<rect x="0" y="0" width="120" height="140" fill="none" stroke="none"></rect>' + // مساحة شفافة
         '<clipPath id="clip"><circle cx="60" cy="60" r="50"></circle></clipPath>' +
         '<image preserveAspectRatio="xMidYMid slice" clip-path="url(#clip)" xlink:href="{val}" x="10" y="10" width="100" height="100"></image>';
-    OrgChart.templates.photo_template.field_0 =
-        '<text style="font-size: 16px;" fill="#2c3e50" x="60" y="130" text-anchor="middle">{val}</text>';
+        OrgChart.templates.photo_template.field_0 =
+        '<text style="font-size: 18px; font-weight: bold;" fill="#2c3e50" x="60" y="130" text-anchor="middle">{val}</text>';
     
     OrgChart.templates.photo_template.img_0 = ''; // نفرغ هذا لأنه تم دمجه في العقدة الرئيسية
 
