@@ -42,37 +42,39 @@ body {
   height: calc(100vh - 200px); /* تعديل الارتفاع ليناسب حجم الهيدر والفوتر */
 }
 
-/* --- ألوان بطاقات الأجيال (النسخة النهائية والصحيحة) --- */
+/* --- ألوان الخطوط الرابطة بين الأجيال --- */
 
-/* الجيل الأول (الأجداد) - لون أزرق داكن */
-[data-tags*="gen-1"] rect {
-    fill: #2c3e50 !important;
+/* لون الخط الخارج من الجيل الأول */
+[data-l-from*="gen-1"] path {
+    stroke: #2c3e50 !important;
 }
 
-/* الجيل الثاني (الآباء) - لون أزرق ثانوي */
-[data-tags*="gen-2"] rect {
-    fill: #3498db !important;
+/* لون الخط الخارج من الجيل الثاني */
+[data-l-from*="gen-2"] path {
+    stroke: #3498db !important;
 }
 
-/* الجيل الثالث (الأحفاد) - لون أخضر */
-[data-tags*="gen-3"] rect {
-    fill: #27ae60 !important;
+/* لون الخط الخارج من الجيل الثالث */
+[data-l-from*="gen-3"] path {
+    stroke: #27ae60 !important;
 }
 
-/* الجيل الرابع (أبناء الأحفاد) - لون رمادي داكن */
-[data-tags*="gen-4"] rect {
-    fill: #7f8c8d !important;
+/* لون الخط الخارج من الجيل الرابع (لن يظهر إلا إذا كان لديهم أبناء) */
+[data-l-from*="gen-4"] path {
+    stroke: #7f8c8d !important;
 }
 
-/* تغيير لون النص في كل البطاقات إلى الأبيض ليكون واضحاً */
-.boc-node .field_0 {
-    fill: #ffffff !important;
-    font-size: 16px !important; /* تكبير الخط قليلاً */
-    font-weight: bold;
+
+/* --- تحسينات على قالب 'mery' --- */
+
+/* تكبير حجم الاسم وتغيير لونه ليكون أوضح */
+.boc-mery .boc-text {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    fill: #2c3e50 !important; /* لون أزرق داكن */
 }
 
-/* تحسين مظهر الصورة داخل البطاقة */
-.boc-node circle {
-    stroke: rgba(255, 255, 255, 0.7) !important; /* إضافة إطار أبيض شفاف حول الصورة */
-    stroke-width: 3px !important;
+/* إضافة إطار حول الصورة */
+.boc-mery .boc-img-0 {
+    border: 3px solid #3498db;
 }

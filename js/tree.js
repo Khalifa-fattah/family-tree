@@ -3,18 +3,27 @@ window.onload = function () {
     const chartData = [];
     familyData.forEach(generation => {
         const generationTag = `gen-${generation.generation_number}`;
+
         generation.members.forEach(person => {
+            // --- تعديل منطق الصورة ---
+            // إذا كان المسار موجوداً ويحتوي على نقطة (امتداد)، استخدمه.
+            // وإلا، استخدم المسار الافتراضي الذي حددته.
+            const imageUrl = (person.image && person.image.includes('.')) 
+                ? person.image 
+                : 'images/default-avatar.jpg'; // المسار الافتراضي الجديد
+
             let personNode = {
                 id: person.id,
                 pid: person.parentId,
                 name: person.name,
-                // نستخدم المسار الموجود في البيانات، وسنعالج الخطأ لاحقاً
-                img: person.image, 
+                img: imageUrl, // استخدام المسار الصحيح
                 tags: [generationTag]
             };
+
             if (person.partnerId) {
                 personNode.pids = [person.partnerId];
             }
+
             chartData.push(personNode);
         });
     });
@@ -22,25 +31,29 @@ window.onload = function () {
     // 2. إعدادات الشجرة
     var chart = new OrgChart(document.getElementById("tree"), {
         nodes: chartData,
-        template: "ana",
         
+        // --- استخدام القالب الجديد 'mery' لعرض الصورة والاسم فقط ---
+        template: "mery",
+
         onNodeClick: function(args) {
-            return false; // يمنع فتح صفحة التفاصيل الافتراضية
+            return false; // يمنع الإجراء الافتراضي عند النقر
         },
 
         nodeBinding: {
-            field_0: "name",
-            img_0: "img"
+            field_0: "name", // الاسم
+            img_0: "img"     // الصورة
         },
         
+        // لا حاجة لتعريف قوالب جديدة للألوان مع هذا القالب
+        // سنقوم بتلوين الخطوط الرابطة بدلاً من البطاقات
         tags: {
-            "gen-1": { template: "ana" },
-            "gen-2": { template: "ana" },
-            "gen-3": { template: "ana" },
-            "gen-4": { template: "ana" }
+            "gen-1": { },
+            "gen-2": { },
+            "gen-3": { },
+            "gen-4": { }
         },
 
-        partnerSeparation: 200,
+        partnerSeparation: 150, // تقليل المسافة لتناسب القالب الجديد
         enableSearch: true,
         nodeMenu: {
             details: { text: "تفاصيل" }
@@ -50,24 +63,4 @@ window.onload = function () {
         layout: OrgChart.mixed,
         scaleInitial: OrgChart.match.boundary,
     });
-
-    // --- الجزء الجديد والمهم: معالجة الصور المكسورة ---
-    // هذا الكود يتم تشغيله بعد إنشاء الشجرة
-    // وهو يمر على كل الصور ويستمع لحدث "error"
-    chart.on('render', function() {
-        const images = document.querySelectorAll('.boc-img-0'); // استهداف كل الصور في الشجرة
-        images.forEach(img => {
-            img.addEventListener('error', function() {
-                // عند فشل تحميل الصورة، استبدلها بالصورة الافتراضية
-                this.setAttribute('href', 'images/default-avatar.png');
-            });
-            // للتأكد من أن الصور التي ليس لها مسار أصلاً تظهر بالصورة الافتراضية
-            if (!img.getAttribute('href')) {
-                img.setAttribute('href', 'images/default-avatar.png');
-            }
-        });
-    });
-    // استدعاء render مرة واحدة يدوياً لتطبيق الكود على الفور
-    chart.draw();
-    // ----------------------------------------------------
 };
