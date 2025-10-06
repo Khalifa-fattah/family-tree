@@ -1,5 +1,5 @@
 window.onload = function () {
-    // 1. تعريف القالب المخصص
+    // 1. تعريف القالب المخصص للصور
     OrgChart.templates.photo_template = Object.assign({}, OrgChart.templates.base);
     OrgChart.templates.photo_template.size = [120, 140];
     OrgChart.templates.photo_template.node =
@@ -8,6 +8,8 @@ window.onload = function () {
         '<image preserveAspectRatio="xMidYMid slice" clip-path="url(#clip)" xlink:href="{val}" x="10" y="10" width="100" height="100"></image>';
     OrgChart.templates.photo_template.field_0 =
         '<text style="font-size: 18px; font-weight: bold;" fill="#2c3e50" x="60" y="130" text-anchor="middle">{val}</text>';
+    
+    // لا نحتاج لربط حقل الصورة هنا لأننا سنربطه في nodeBinding
     OrgChart.templates.photo_template.img_0 = '';
 
     // 2. تحويل البيانات
@@ -15,23 +17,30 @@ window.onload = function () {
     familyData.forEach(generation => {
         const generationTag = `gen-${generation.generation_number}`;
         generation.members.forEach(person => {
-                      // --- منطق اختيار الصورة بناءً على الجنس (الكود الصحيح) ---
-let imageUrl = person.image; // نبدأ بالصورة المخصصة للشخص
+            
+            // --- منطق اختيار الصورة بناءً على الجنس (الكود الصحيح) ---
+            let imageUrl = person.image; // نبدأ بالصورة المخصصة للشخص
 
-// إذا لم تكن هناك صورة مخصصة، اختر الصورة الافتراضية بناءً على الجنس
-if (!imageUrl || !imageUrl.includes('.')) {
-    if (person.gender === 'female') {
-        imageUrl = 'images/female-avatar.jpg'; // الصورة الافتراضية للإناث
-    } else {
-        imageUrl = 'images/default-avatar.jpg'; // الصورة الافتراضية للذكور
-    }
-}
-
+            // إذا لم تكن هناك صورة مخصصة، اختر الصورة الافتراضية بناءً على الجنس
+            if (!imageUrl || !imageUrl.includes('.')) {
+                if (person.gender === 'female') {
+                    imageUrl = 'images/female-avatar.jpg'; // الصورة الافتراضية للإناث
+                } else {
+                    imageUrl = 'images/default-avatar.jpg'; // الصورة الافتراضية للذكور
+                }
+            }
 
             let personNode = {
-                id: person.id, pid: person.parentId, name: person.name, img: imageUrl, tags: [generationTag]
+                id: person.id,
+                pid: person.parentId,
+                name: person.name,
+                img: imageUrl, // هذا هو الحقل الذي يحتوي على رابط الصورة
+                tags: [generationTag]
             };
-            if (person.partnerId) { personNode.pids = [person.partnerId]; }
+
+            if (person.partnerId) {
+                personNode.pids = [person.partnerId];
+            }
             chartData.push(personNode);
         });
     });
@@ -41,15 +50,18 @@ if (!imageUrl || !imageUrl.includes('.')) {
         nodes: chartData,
         template: "photo_template",
         
-        // --- تحسين الأداء (الحل رقم 2) ---
         lazyLoading: true,
-        
-        // --- تحسين الأداء (جزء من الحل رقم 3) ---
-        // نوقف السحب الافتراضي لنبني سحب مخصص
         dragScrool: false, 
 
         onNodeClick: function(args) { return false; },
-        nodeBinding: { node: "img", field_0: "name" },
+
+        // --- هذا هو السطر الذي تم تصحيحه ---
+        nodeBinding: {
+            val: "img",      // نربط حقل 'img' بالصورة {val}
+            field_0: "name"  // نربط حقل 'name' بالنص {val}
+        },
+        // ------------------------------------
+
         tags: { "gen-1": {}, "gen-2": {}, "gen-3": {}, "gen-4": {} },
         partnerSeparation: 150,
         enableSearch: true,
@@ -60,12 +72,11 @@ if (!imageUrl || !imageUrl.includes('.')) {
         scaleInitial: OrgChart.match.boundary,
     });
 
-    // --- تحسين الأداء (الجزء الثاني من الحل رقم 3) ---
-    // هذا الكود يقلل جودة العرض أثناء السحب فقط
+    // تحسين الأداء عند السحب
     chart.on('drag', function (sender, args) {
-        sender.SVG.style.imageRendering = 'pixelated'; // جودة منخفضة أثناء السحب
+        sender.SVG.style.imageRendering = 'pixelated';
     });
     chart.on('dragend', function (sender, args) {
-        sender.SVG.style.imageRendering = 'auto'; // جودة عالية عند التوقف
+        sender.SVG.style.imageRendering = 'auto';
     });
 };
