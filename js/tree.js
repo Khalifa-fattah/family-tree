@@ -15,9 +15,18 @@ window.onload = function () {
     familyData.forEach(generation => {
         const generationTag = `gen-${generation.generation_number}`;
         generation.members.forEach(person => {
-            const imageUrl = (person.image && person.image.includes('.')) 
-                ? person.image 
-                : 'images/default-avatar.jpg';
+                        // --- منطق اختيار الصورة بناءً على الجنس ---
+            let imageUrl = person.image; // نبدأ بالصورة المخصصة للشخص
+
+            // إذا لم تكن هناك صورة مخصصة، اختر الصورة الافتراضية بناءً على الجنس
+            if (!imageUrl || !imageUrl.includes('.')) {
+                if (person.gender === 'female') {
+                    imageUrl = 'images/female-avatar.jpg'; // الصورة الافتراضية للإناث
+                } else {
+                    imageUrl = 'images/default-avatar.jpg'; // الصورة الافتراضية للذكور
+                }
+            }
+
             let personNode = {
                 id: person.id, pid: person.parentId, name: person.name, img: imageUrl, tags: [generationTag]
             };

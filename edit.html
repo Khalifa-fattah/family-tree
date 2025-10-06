@@ -131,7 +131,7 @@
 
                 const newPerson = {
                     id: newId, name: name, parentId: parentId || null, gender: genderSelect.value,
-                    image: "images/default-avatar.jpg", // تم التصحيح إلى .jpg
+                    image: (genderSelect.value === 'female') ? "images/female-avatar.jpg" : "images/default-avatar.jpg",, // تم التصحيح إلى .jpg
                     bio: bio, birth_date: birthDateInput.value.trim(),
                     children: [], generation_number: genNum
                 };
@@ -182,7 +182,7 @@
                         finalOutput += `    name: "${person.name}",\n`;
                         finalOutput += `    parentId: ${person.parentId ? `"${person.parentId}"` : null},\n`;
                         finalOutput += `    gender: "${person.gender}",\n`;
-                        finalOutput += `    image: "images/default-avatar.jpg",\n`; // تم التصحيح إلى .jpg
+                        finalOutput += `    image: (genderSelect.value === 'female') ? "images/female-avatar.jpg" : "images/default-avatar.jpg",,\n`; // تم التصحيح إلى .jpg
                         finalOutput += `    bio: "${person.bio}",\n`;
                         finalOutput += `    birth_date: "${person.birth_date}",\n`;
                         finalOutput += `    children: []\n`;
