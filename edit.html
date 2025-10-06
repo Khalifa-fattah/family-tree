@@ -123,7 +123,7 @@
                 if (!name || !genNum) { alert('الرجاء إدخال الاسم واختيار الجيل.'); return; }
                 if (genNum > 1 && !parentId) { alert('الرجاء اختيار الأب من الجيل السابق.'); return; }
 
-                const newId = `person${genNum}_${Math.floor(Math.random() * 1000)}_${Date.now()}`;
+                const newId = `person${genNum}_${Math.floor(100 + Math.random() * 900)}`;
                 let bio = bioInput.value.trim();
                 if (statusSelect.value === 'deceased' && !bio.includes('له الرحمة')) {
                     bio = (bio ? bio + ' - ' : '') + 'له الرحمة';
@@ -131,7 +131,7 @@
 
                 const newPerson = {
                     id: newId, name: name, parentId: parentId || null, gender: genderSelect.value,
-                    image: "images/default-avatar.png", bio: bio, birth_date: birthDateInput.value.trim(),
+                    image: "images/default-avatar.jpg", bio: bio, birth_date: birthDateInput.value.trim(),
                     children: [], generation_number: genNum
                 };
 
