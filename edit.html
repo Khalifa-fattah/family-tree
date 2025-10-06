@@ -125,11 +125,14 @@
                     bio = (bio ? bio + ' - ' : '') + 'له الرحمة';
                 }
 
+                // --- هذا هو السطر الذي تم تعديله ---
                 const newPerson = {
                     id: newId, name: name, parentId: parentId || null, gender: genderSelect.value,
-                    image: "images/default-avatar.jpg", bio: bio, birth_date: birthDateInput.value.trim(),
+                    image: "", // تم تغيير المسار إلى نص فارغ
+                    bio: bio, birth_date: birthDateInput.value.trim(),
                     children: [], generation_number: genNum
                 };
+                // ------------------------------------
 
                 newPeople.push(newPerson);
                 const listItem = document.createElement('li');
@@ -140,7 +143,6 @@
                 [nameInput, birthDateInput, bioInput].forEach(input => input.value = '');
             });
 
-            // --- الدالة النهائية لتوليد الكود الصافي (تم إصلاحها) ---
             generateFinalCodeBtn.addEventListener('click', () => {
                 if (newPeople.length === 0) {
                     alert('لم تقم بإضافة أي أشخاص جدد!');
@@ -176,16 +178,17 @@
                         personString += `    name: "${person.name}",\n`;
                         personString += `    parentId: ${person.parentId ? `"${person.parentId}"` : null},\n`;
                         personString += `    gender: "${person.gender}",\n`;
-                        personString += `    image: "images/default-avatar.jpg",\n`;
+                        // --- وهذا هو السطر الثاني الذي تم تعديله ---
+                        personString += `    image: "",\n`; // تم تغيير المسار إلى نص فارغ
+                        // ------------------------------------------
                         personString += `    bio: "${person.bio}",\n`;
                         personString += `    birth_date: "${person.birth_date}",\n`;
                         personString += `    children: []\n`;
-                        personString += `}`; // لا توجد فاصلة هنا
+                        personString += `}`;
                         allNewObjects.push(personString);
                     });
                 }
                 
-                // نضيف الفاصلة بين الكائنات فقط
                 finalOutput += allNewObjects.join(',\n');
 
                 outputTextarea.value = finalOutput;
