@@ -19,13 +19,31 @@ document.addEventListener('DOMContentLoaded', function() {
     displayPersonInfo(person);
     displayPersonChildren(person);
 
+    // --- تم تعديل هذه الدالة ---
     function displayPersonInfo(person) {
         document.getElementById('pageTitle').textContent = `${person.name} - شجرة العائلة`;
         
         const personImage = document.getElementById('personImage');
-        personImage.src = person.image;
+
+        // --- هذا هو الجزء الجديد والمهم ---
+        // 1. منطق اختيار الصورة الصحيحة بناءً على الجنس
+        let imageSrc = person.image;
+        if (!imageSrc || !imageSrc.includes('.')) {
+            if (person.gender === 'female') {
+                imageSrc = 'images/female-avatar.jpg';
+            } else {
+                imageSrc = 'images/default-avatar.jpg';
+            }
+        }
+        // ------------------------------------
+
+        // 2. استخدام رابط الصورة الصحيح وتعيين دالة onerror كحل احتياطي
+        personImage.src = imageSrc;
         personImage.alt = person.name;
-        personImage.onerror = function() { this.src = 'images/default-avatar.jpg'; };
+        personImage.onerror = function() { 
+            // إذا فشل تحميل الصورة (حتى الصورة الرمزية)، اعرض صورة الذكر كحل أخير
+            this.src = 'images/default-avatar.jpg'; 
+        };
         
         document.getElementById('personName').textContent = person.name;
         document.getElementById('personBirthDate').textContent = formatDate(person.birth_date);
@@ -69,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         noChildrenMessage.classList.add('hidden');
         childrenContainer.innerHTML = '';
 
-        // كل طفل في صفه الخاص
         children.forEach((child) => {
             const row = document.createElement('div');
             row.className = 'children-row';
@@ -78,8 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
             row.style.marginBottom = '1rem';
 
             const childCard = createChildCard(child);
-            childCard.style.flex = '1'; // يمتد ليملأ عرض الصف
-childCard.style.maxWidth = '100%';
+            childCard.style.flex = '1';
+            childCard.style.maxWidth = '100%';
             row.appendChild(childCard);
 
             childrenContainer.appendChild(row);
@@ -105,7 +122,6 @@ childCard.style.maxWidth = '100%';
         window.location.href = `person.html?id=${personId}`;
     }
     
-    // دالة تنسيق التاريخ ميلادي فقط
     function formatDate(dateString) {
         if (!dateString) return 'غير محدد';
         const date = new Date(dateString);

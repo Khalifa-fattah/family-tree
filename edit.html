@@ -68,7 +68,6 @@
     <script src="js/data.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- عناصر الواجهة ---
             const generationSelect = document.getElementById('generation');
             const parentSelect = document.getElementById('parent');
             const nameInput = document.getElementById('name');
@@ -82,11 +81,9 @@
             const outputTextarea = document.getElementById('output-data');
             const copyBtn = document.getElementById('copyBtn');
 
-            // --- مخزن البيانات المؤقت ---
             let newPeople = [];
             const localFamilyData = JSON.parse(JSON.stringify(familyData));
 
-            // --- دوال التهيئة ---
             function populateGenerations() {
                 localFamilyData.forEach(gen => {
                     const option = document.createElement('option');
@@ -114,7 +111,6 @@
                 }
             }
 
-            // --- دوال الإضافة والتحديث ---
             addPersonBtn.addEventListener('click', () => {
                 const name = nameInput.value.trim();
                 const genNum = parseInt(generationSelect.value);
@@ -131,8 +127,7 @@
 
                 const newPerson = {
                     id: newId, name: name, parentId: parentId || null, gender: genderSelect.value,
-                    image: (genderSelect.value === 'female') ? "images/female-avatar.jpg" : "images/default-avatar.jpg",, // تم التصحيح إلى .jpg
-                    bio: bio, birth_date: birthDateInput.value.trim(),
+                    image: "images/default-avatar.jpg", bio: bio, birth_date: birthDateInput.value.trim(),
                     children: [], generation_number: genNum
                 };
 
@@ -154,7 +149,6 @@
 
                 let finalOutput = "";
                 
-                // 1. تجميع الـ IDs للأبناء (تم إرجاع هذا الجزء)
                 const childrenByParent = newPeople.reduce((acc, person) => {
                     if (person.parentId) {
                         if (!acc[person.parentId]) acc[person.parentId] = [];
@@ -167,7 +161,6 @@
                     finalOutput += `${childrenByParent[parentId].join(', ')}\n\n`;
                 }
 
-                // 2. تجميع كائنات الأشخاص الجدد
                 const peopleByGeneration = newPeople.reduce((acc, person) => {
                     const genNum = person.generation_number;
                     if (!acc[genNum]) acc[genNum] = [];
@@ -175,21 +168,25 @@
                     return acc;
                 }, {});
 
+                let allNewObjects = [];
                 for (const genNum in peopleByGeneration) {
                     peopleByGeneration[genNum].forEach(person => {
-                        finalOutput += `{\n`;
-                        finalOutput += `    id: "${person.id}",\n`;
-                        finalOutput += `    name: "${person.name}",\n`;
-                        finalOutput += `    parentId: ${person.parentId ? `"${person.parentId}"` : null},\n`;
-                        finalOutput += `    gender: "${person.gender}",\n`;
-                        finalOutput += `    image: (genderSelect.value === 'female') ? "images/female-avatar.jpg" : "images/default-avatar.jpg",,\n`; // تم التصحيح إلى .jpg
-                        finalOutput += `    bio: "${person.bio}",\n`;
-                        finalOutput += `    birth_date: "${person.birth_date}",\n`;
-                        finalOutput += `    children: []\n`;
-                        finalOutput += `},\n`;
+                        let personString = `{\n`;
+                        personString += `    id: "${person.id}",\n`;
+                        personString += `    name: "${person.name}",\n`;
+                        personString += `    parentId: ${person.parentId ? `"${person.parentId}"` : null},\n`;
+                        personString += `    gender: "${person.gender}",\n`;
+                        personString += `    image: "images/default-avatar.jpg",\n`;
+                        personString += `    bio: "${person.bio}",\n`;
+                        personString += `    birth_date: "${person.birth_date}",\n`;
+                        personString += `    children: []\n`;
+                        personString += `}`; // لا توجد فاصلة هنا
+                        allNewObjects.push(personString);
                     });
-                    finalOutput += "\n";
                 }
+                
+                // نضيف الفاصلة بين الكائنات فقط
+                finalOutput += allNewObjects.join(',\n');
 
                 outputTextarea.value = finalOutput;
                 alert('تم تجهيز الأكواد النهائية في الصندوق بالأسفل!');
@@ -201,7 +198,6 @@
                 alert('تم نسخ الأكواد إلى الحافظة!');
             });
 
-            // --- بدء التشغيل ---
             populateGenerations();
             populateParents();
             generationSelect.addEventListener('change', populateParents);

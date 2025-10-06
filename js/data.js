@@ -1128,7 +1128,6 @@ const familyData = [
     name: "محمد حسام",
     parentId: "person3_12",
     gender: "male",
-    gender: "male",
                 image: "images/default-avatar.jpg",
     bio: "",
     birth_date: "",
