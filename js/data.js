@@ -1018,9 +1018,9 @@ const familyData = [
     name: "محمد حسام",
     parentId: "person3_12",
     gender: "male",
-    image: "images/default-avatar.png",
+    image: "images/default-avatar.jpg",
     bio: "",
-    birth_date: "2009",
+    birth_date: "",
     children: []
             },
             
