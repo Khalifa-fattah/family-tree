@@ -131,7 +131,8 @@
 
                 const newPerson = {
                     id: newId, name: name, parentId: parentId || null, gender: genderSelect.value,
-                    image: "images/default-avatar.jpg", bio: bio, birth_date: birthDateInput.value.trim(),
+                    image: "images/default-avatar.jpg", // تم التصحيح إلى .jpg
+                    bio: bio, birth_date: birthDateInput.value.trim(),
                     children: [], generation_number: genNum
                 };
 
@@ -144,7 +145,7 @@
                 [nameInput, birthDateInput, bioInput].forEach(input => input.value = '');
             });
 
-            // --- الدالة النهائية لتوليد الكود الصافي ---
+            // --- الدالة النهائية لتوليد الكود الصافي (تم إصلاحها) ---
             generateFinalCodeBtn.addEventListener('click', () => {
                 if (newPeople.length === 0) {
                     alert('لم تقم بإضافة أي أشخاص جدد!');
@@ -153,7 +154,7 @@
 
                 let finalOutput = "";
                 
-                // 1. تجميع الـ IDs للأبناء
+                // 1. تجميع الـ IDs للأبناء (تم إرجاع هذا الجزء)
                 const childrenByParent = newPeople.reduce((acc, person) => {
                     if (person.parentId) {
                         if (!acc[person.parentId]) acc[person.parentId] = [];
@@ -181,7 +182,7 @@
                         finalOutput += `    name: "${person.name}",\n`;
                         finalOutput += `    parentId: ${person.parentId ? `"${person.parentId}"` : null},\n`;
                         finalOutput += `    gender: "${person.gender}",\n`;
-                        finalOutput += `    image: "images/default-avatar.png",\n`;
+                        finalOutput += `    image: "images/default-avatar.jpg",\n`; // تم التصحيح إلى .jpg
                         finalOutput += `    bio: "${person.bio}",\n`;
                         finalOutput += `    birth_date: "${person.birth_date}",\n`;
                         finalOutput += `    children: []\n`;
