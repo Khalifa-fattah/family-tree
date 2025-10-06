@@ -39,11 +39,11 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="name">الاسم الكامل:</label>
-                        <input type="text" id="name" placeholder="فلان الفلاني">
+                        <input type="text" id="name" placeholder= "اسم الشخص">
                     </div>
                     <div class="form-group">
                         <label for="birth_date">تاريخ الميلاد:</label>
-                        <input type="text" id="birth_date" placeholder="مثال: 1990-05-20 أو 1990">
+                        <input type="text" id="birth_date" placeholder= "2xxx-x-x">
                     </div>
                     <div class="form-group">
                         <label for="gender">الجنس:</label>
@@ -167,12 +167,9 @@
                 }
             }
 
-                        function renderAddOutput(newPersonObject, parentId) {
-                let outputString = `\n// --- ➕ كود إضافة شخص جديد --- \n`;
-                outputString += `// 1. أضف الكائن التالي إلى مصفوفة 'members' في الجيل رقم ${newPersonObject.generation_number}\n`;
-                
-                // بناء الكائن يدوياً بدون علامات تنصيص للمفاتيح
-                outputString += `{\n`;
+                                    function renderAddOutput(newPersonObject) {
+                // بناء الكائن يدوياً بدون أي تعليقات
+                let outputString = `{\n`;
                 outputString += `    id: "${newPersonObject.id}",\n`;
                 outputString += `    name: "${newPersonObject.name}",\n`;
                 outputString += `    parentId: ${newPersonObject.parentId ? `"${newPersonObject.parentId}"` : null},\n`;
@@ -181,16 +178,15 @@
                 outputString += `    bio: "${newPersonObject.bio}",\n`;
                 outputString += `    birth_date: "${newPersonObject.birth_date}",\n`;
                 outputString += `    children: []\n`;
-                outputString += `},\n`;
+                outputString += `},\n`; // نضيف فاصلة في النهاية لتسهيل إضافة المزيد من الأشخاص
 
-                if (parentId) {
-                    outputString += `\n// 2. ابحث عن الأب (id: "${parentId}") وأضف "${newPersonObject.id}" إلى مصفوفة 'children' الخاصة به.\n`;
-                }
+                // إضافة الكود الجديد إلى المحتوى الموجود
                 outputTextarea.value += outputString;
             }
 
 
-            addPersonBtn.addEventListener('click', () => {
+
+                        addPersonBtn.addEventListener('click', () => {
                 const name = nameInput.value.trim();
                 const genNum = parseInt(generationSelect.value);
                 const parentId = parentSelect.value;
@@ -211,17 +207,15 @@
                     name: name,
                     parentId: parentId || null,
                     gender: genderSelect.value,
-                    image: "images/default-avatar.png",
                     bio: bio,
                     birth_date: birthDateInput.value.trim(),
-                    children: [],
-                    generation_number: genNum // خاصية مؤقتة
                 };
 
                 alert(`تم إنشاء كود إضافة "${name}" بنجاح!`);
-                renderAddOutput(newPerson, parentId);
+                renderAddOutput(newPerson); // تم تعديل الاستدعاء هنا
                 [nameInput, birthDateInput, bioInput].forEach(input => input.value = '');
             });
+
 
             // --- دوال التعديل ---
             function populatePeopleToEdit() {
